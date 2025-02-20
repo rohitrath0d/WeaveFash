@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 3001;
 // enable cors & corsOptions
 const corsOptions    = {
     origin: 'http://localhost:3000',
-    credentials: true,                      // as we are using cookie, credentials will be true.
+    credentials: true,                                      // as we are using cookie, credentials will be true.
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 };
@@ -29,7 +29,7 @@ app.use(cookieParser());
 
 export const prisma = new PrismaClient()
 
-app.use('/api/auth', authRoutes)
+app.use('/api/auth', authRoutes)                // main handler route of authRoutes
 
 app.get('/', (req, res) => {
     res.send('Hello from E-commerce backend')
@@ -43,4 +43,4 @@ app.listen(PORT, ()=>{
 process.on('SIGINT', async() => {
     await prisma.$disconnect()
     process.exit();
-});0
+});
