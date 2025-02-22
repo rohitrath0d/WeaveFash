@@ -1,5 +1,6 @@
-import arcjet, { protectSignup } from "@arcjet/next";
+import arcjet, { protectSignup, validateEmail } from "@arcjet/next";
 
+// arcjet configuration for the registration/sign-up. same we also have to create for login, coz it can also be tampered, hence have to be secured.
 export const protectSignUpRules = arcjet({
     key: process.env.ARCJET_KEY!,
     rules:[
@@ -26,3 +27,17 @@ export const protectSignUpRules = arcjet({
     }),
     ]
 })
+
+
+// arcjet configuration for the login.
+
+export const protectLoginRules = arcjet({
+  key: process.env.ARCJET_KEY!, // Get your site key from https://app.arcjet.com
+  rules: [
+    validateEmail({
+      mode: "LIVE", // will block requests. Use "DRY_RUN" to log only
+      // block disposable, invalid, and email addresses with no MX records
+      deny: ["DISPOSABLE", "INVALID", "NO_MX_RECORDS"],
+    }),
+  ],
+}); 

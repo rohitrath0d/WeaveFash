@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image";
 import banner from '../../../../public/images/banner2.jpg' 
 import logo from '../../../../public/images/logo1.png'
@@ -5,8 +7,57 @@ import { Label } from "../../../components/ui/label";
 import { Input } from "../../../components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { useAuthStore } from "@/store/useAuthStore";
+import { useRouter } from "next/navigation";
+import { protectSignInAction } from "@/actions/auth";
 
 function LoginPage() {
+
+    const [formData, setFormData] = useState ({
+            email: '',
+            password: '',
+        });
+    
+        const { toast } =useToast();
+        const {login, isLoading} = useAuthStore();
+        const router = useRouter ();
+    
+        const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) =>{
+            setFormData(prev => ({
+               ...prev, 
+               [event.target.name] : event.target.value 
+            }));
+        };
+
+         const handleSubmit = async(event: React.FormEvent) =>{
+                event.preventDefault()
+                const checkFirstLevelOfValidation = await protectSignInAction(formData.email);
+                if(!checkFirstLevelOfValidation.success){
+                    toast({
+                        title: checkFirstLevelOfValidation.error,       // this.error
+                        variant: 'destructive'
+                    });
+                    // don't forget to return it, if didn't do, then we cant go to the next one.
+                    return;
+                }
+        
+                //success --> is for login. hence in login userId will be not here, but in registration it will be there.
+                const success = await login(formData.email, formData.password);
+                toast({
+                    title: "Login Successfull!", 
+                });
+                
+                if(success){
+                    // in login, we have set the user (user: response.data.user)
+                    const user = useAuthStore.getState().user   //here, we will get the user
+                    if(user?.role === 'SUPER_ADMIN') router.push('/super-admin')
+                        else router.push('/home-page')
+
+                }
+            };
+        
     return <div className="min-h-screen bg-[#fff6f4] flex">
         <div className="hidden lg:block w-1/2 bg-[#ffede1] relative overflow-hidden">
         <Image
@@ -27,8 +78,8 @@ function LoginPage() {
                  alt="Logo"
                 />
             </div>
-           <form className="space-y-4">
-            <div className="space-y-1">
+           <form className="space-y-4" onSubmit={handleSubmit}>
+            {/* <div className="space-y-1">
                 <Label htmlFor="name"> Full Name</Label>
                 <Input
                 id="name"
@@ -38,7 +89,7 @@ function LoginPage() {
                 required
                 className="bg-[#ffede1]"
                 />
-            </div>
+            </div> */}
             
             <div className="space-y-1">
                 <Label htmlFor="email">Email</Label>
@@ -47,8 +98,10 @@ function LoginPage() {
                 name="email"
                 type="text"
                 placeholder="Enter your email"
-                required
                 className="bg-[#ffede1]"
+                required
+                value={formData.email}
+                onChange={handleOnChange}
                 />
             </div>
 
@@ -57,10 +110,12 @@ function LoginPage() {
                 <Input
                 id="password"
                 name="password"
-                type="text"
+                type="password"
                 placeholder="Enter your password "
+                className="bg-[#ffede1]"
                 required
-                className="bg-[#ffede1]"    
+                value={formData.password}
+                onChange={handleOnChange}
                 />
             </div>
 
