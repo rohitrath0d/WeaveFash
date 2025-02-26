@@ -7,7 +7,7 @@ import { jwtVerify } from "jose";
 // -->1. Public routes -> anyone can access
 // -->2. User-related routes
 // -->3. Client-side routes
-// -->4. Super-admin routes
+// -->4. Super-admin routes  
 
 const publicRoutes = ['/auth/register', '/auth/login'];
 const superAdminRoutes = ['/super-admin', 'super-admin/:path*'];

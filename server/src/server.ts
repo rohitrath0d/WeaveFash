@@ -4,6 +4,7 @@ import express from 'express';
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import authRoutes from './routes/authRoutes'         // now, we need to use authRoutes, bcoz we need to create Main Auth handler, which will handle all the child routes of this auth.
+import productRoutes from './routes/productRoutes'   
 
 // the first thing we need to do in this file (server.ts) --> always, the first main thing is to do to load environment variables
 // load all  you r environment variables
@@ -13,7 +14,7 @@ dotenv.config();
 const app = express();
 
 // enable port
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001;  
 
 // enable cors & corsOptions
 const corsOptions    = {
@@ -30,6 +31,7 @@ app.use(cookieParser());
 export const prisma = new PrismaClient()
 
 app.use('/api/auth', authRoutes)                // main handler route of authRoutes
+app.use('/api/products', productRoutes)      
 
 app.get('/', (req, res) => {
     res.send('Hello from E-commerce backend')
