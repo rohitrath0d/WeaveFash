@@ -7,7 +7,7 @@ import authRoutes from './routes/authRoutes'         // now, we need to use auth
 import productRoutes from './routes/productRoutes'   
 
 import couponRoutes from './routes/couponRoutes'
-
+import settingRoutes from './routes/settingRoutes'
 
 // the first thing we need to do in this file (server.ts) --> always, the first main thing is to do to load environment variables
 // load all  you r environment variables
@@ -33,13 +33,17 @@ app.use(cookieParser());
 
 export const prisma = new PrismaClient()
 
+// for login/register or in case of double check validation
+app.use('/api/auth', authRoutes)                // main handler route of authRoutes
 
 // product routes
-app.use('/api/auth', authRoutes)                // main handler route of authRoutes
 app.use('/api/products', productRoutes)      
 
 // coupon routes
 app.use('/api/coupons', couponRoutes)
+
+// setting routes
+app.use('/api/settings', settingRoutes)
 
 app.get('/', (req, res) => {
     res.send('Hello from E-commerce backend')
