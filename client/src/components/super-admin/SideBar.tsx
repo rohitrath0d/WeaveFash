@@ -1,4 +1,4 @@
-// In components also we have created a folder, 'super-admin' and inside this writing all the commponents related to the super-admin.
+// In components also we have created a folder, 'super-admin' and inside this writing all the components related to the super-admin.
 // This is a better approach in terms of the optimization. we can also directly, place code in individually folders, but it will be difficult to manage the code.
 
 // 2 ways: 
@@ -9,9 +9,9 @@
 import { cn } from '@/lib/utils'
 import React from 'react'
 import { Button } from '../ui/button'
-import { ChevronLeft, ChevronRight, LogOut, Package, PlusCircle, SendToBack, Settings, TicketPercent } from 'lucide-react'
+import { Bike, ChevronLeft, ChevronRight, ListOrdered, LogOut, Package, PlusCircle, SendToBack, Settings, TicketPercent } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-
+// import orderSidebar from '../../../public/images/orderSidebar.png'
 
 
 interface SidebarProps {
@@ -27,36 +27,42 @@ const menuItems = [
         icon: Package,              
         href: '/super-admin/products/list'  
     },
+
     // new products
     {
         name: 'Add new product',
         icon: PlusCircle ,
         href: '/super-admin/products/add'  
     },
+
     // orders page
     {
         name: 'Orders',
-        icon:   SendToBack ,
-        href: '/super-admin/products/orders'  
+        icon:   Bike ,
+        href: '/super-admin/orders'  
     },
+
     // coupons list`
     {
         name: 'Coupons',
         icon:   TicketPercent,
-        href: '/super-admin/products/coupons/add'  
+        href: '/super-admin/coupons/list'  
     },
+
     // coupon add
     {
         name: 'Create Coupon',
-        icon:   TicketPercent,
-        href: '/super-admin/products/coupons/add'  
+        icon:   ListOrdered,
+        href: '/super-admin/coupons/add'  
     },
+
     //settings
     {
         name: 'Settings',
         icon:  Settings,
-        href: '/super-admin/products/settings'  
+        href: '/super-admin/settings'  
     },
+
     // logout icon
     {
         name: 'Log out',

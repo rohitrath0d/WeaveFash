@@ -1,5 +1,6 @@
 import { API_ROUTES } from '@/utils/api';
 import axios from 'axios'
+import { log } from 'node:console';
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
@@ -60,7 +61,8 @@ export const useAuthStore = create<AuthStore>()(
                     const response = await axiosInstance.post('/login', {
                         email, password
                     });
-
+                    console.log("LoginResponse", response);
+                    
                     set({isLoading: false, user: response.data.user});           // response.data.user  --> check authController.ts (in this file, in login method, we are extracting current user, and hence this data comes from that)
                         return true         // here, returning true bcoz, it will return 'boolean'
                     } catch (error) {

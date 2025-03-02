@@ -11,7 +11,7 @@ import { jwtVerify } from "jose";
 
 const publicRoutes = ['/auth/register', '/auth/login'];
 const superAdminRoutes = ['/super-admin', 'super-admin/:path*'];
-const userRoutes = ['/home'];
+const userRoutes = ['/home-page'];
 
 
 export async function middleware(request: NextRequest) {
@@ -61,10 +61,11 @@ export async function middleware(request: NextRequest) {
                 // ur refresh-token is also failed here
                 const response = NextResponse.redirect(new URL('/auth/login', request.url));
 
-                // we need to delete the accessToken/refreshToken (the exisitng token, here)
+                // we need to delete the accessToken/refreshToken (the existing token, here)
                 response.cookies.delete('accessToken')
                 response.cookies.delete('refreshToken')
-                return response;            }
+                return response;            
+            }
         }
 
     }
@@ -79,5 +80,4 @@ export async function middleware(request: NextRequest) {
 // exporting config
 export const config = {
     matcher: ["/((?!api|_next/static|_next/image/favicon.ico).*)"],
-}; 
-
+};

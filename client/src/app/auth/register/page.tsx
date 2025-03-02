@@ -1,8 +1,10 @@
 'use client'
 
 import Image from "next/image";
-import banner from '../../../../public/images/banner2.jpg' 
-import logo from '../../../../public/images/logo1.png'
+// import banner from '../../../../public/images/banner2.jpg' 
+import model from '../../../../public/images/model2.jpg'
+// import logo from '../../../../public/images/logo1.png'
+import shoplogo from '../../../../public/images/shoplogo.png'
 import { Label } from "../../../components/ui/label";
 import { Input } from "../../../components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -62,7 +64,7 @@ function RegisterPage() {
     return <div className="min-h-screen bg-[#fff6f4] flex">
         <div className="hidden lg:block w-1/2 bg-[#ffede1] relative overflow-hidden">
         <Image
-        src={banner}
+        src={model}
         alt="Register"
         fill
         style={{objectFit: 'cover', objectPosition: 'center'}}
@@ -73,7 +75,7 @@ function RegisterPage() {
         <div className="max-w-md w-full mx-auto">
             <div className="flex justify-center">
                 <Image
-                 src={logo}
+                 src={shoplogo}
                  width={200}
                  height={50}
                  alt="Logo"

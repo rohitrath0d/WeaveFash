@@ -1,18 +1,18 @@
 import express from 'express';
-import { authenticateJWT, isSuperAdmin } from '../middlewares/authMiddleware';
+import { authenticateJwt, isSuperAdmin } from '../middlewares/authMiddleware';
 import { upload } from '../middlewares/uploadMiddleware';
 import { createProduct, deleteProduct, fetchAllProductsForAdmin, getProductByID, updateProduct } from '../controllers/productController';
 
 
 const router = express.Router();
 
-router.post('create-new-product', authenticateJWT, isSuperAdmin, upload.array('images', 5), createProduct);
+router.post('/create-new-product', authenticateJwt, isSuperAdmin, upload.array('images', 5), createProduct);
 
-router.get('fetch-admin-products', authenticateJWT, isSuperAdmin, fetchAllProductsForAdmin);
+router.get('/fetch-admin-products', authenticateJwt, isSuperAdmin, fetchAllProductsForAdmin);
 
-router.get('/:id', authenticateJWT, isSuperAdmin, getProductByID ); 
-router.put('/:id', authenticateJWT, isSuperAdmin, updateProduct);
-router.delete('/:id', authenticateJWT, isSuperAdmin, deleteProduct);
+router.get('/:id', authenticateJwt, isSuperAdmin, getProductByID ); 
+router.put('/:id', authenticateJwt, isSuperAdmin, updateProduct);
+router.delete('/:id', authenticateJwt, isSuperAdmin, deleteProduct);
 
 export default router;
 

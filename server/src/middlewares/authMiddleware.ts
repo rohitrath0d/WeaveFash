@@ -14,16 +14,16 @@ export interface AuthenticatedRequest extends Request {         // Request is im
 }
 
 // we have to authenticate JWT
-export const authenticateJWT = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+export const authenticateJwt = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
     // create the accesstoken first, from cookies, YES!
-    const accessToken =  req.cookies["access-token"];
+    const accessToken =  req.cookies.accessToken;
 
     if (!accessToken) {
         res.status(401).json({ success: false, error: "Access token is invalid or not found " });
         return;
     }
 
-    jwtVerify(accessToken, new TextEncoder().encode(process.env.JWT_SECRET)).then(res=>{
+    jwtVerify(accessToken, new TextEncoder().encode(process.env.JWT_SECRET)).then((res)=>{
         const payload = res.payload as JWTPayload & {
             userId: string;
             email: string;
@@ -36,7 +36,7 @@ export const authenticateJWT = (req: AuthenticatedRequest, res: Response, next: 
             role: payload.role
         }
         next()
-    }).catch(e => {
+    }).catch((e) => {
         console.error(e);
         res.status(401).json({ success: false, error: "Access token is invalid or not found" });
         
