@@ -11,31 +11,8 @@ import { protectProductFormAction } from '@/actions/product';
   import Image from 'next/image';
   import { useRouter, useSearchParams } from 'next/navigation';
   import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
-
-  const categories = [
-    "Fashion",
-    "Electronics",
-    "Hand bags",
-    "Wallet",
-    "Sun glass",
-    "Caps & Hats",
-  ]
-
-  const sizes = ["XS", "S", "M", "L", "XL", "2XL", "3XL"]
-
-  const colors = [
-    { name: "White", class: "bg-[#FFFFFF]" },
-    { name: "Black", class: "bg-[#000000]" },
-    { name: "Navy", class: "bg-[#000080]" },
-    { name: "Yellow", class: "bg-[#FFFF00]" },
-    { name: "Orange", class: "bg-[#FB923C]" },
-    { name: "Green", class: "bg-[#22C55E]" },
-    { name: "Pink", class: "bg-[#EC4899]" },
-    { name: "Cyan", class: "bg-[#00FFFF]" },
-    { name: "Blue", class: "bg-[#3B82F6]" },
-  ];
-
-  const brands = ["Nike", "Adidas", "Puma", "Reebok", "Dolche Gabana", "Luis vuitton"]
+  import {brands, colors, sizes, categories} from '../../../../utils/config'
+ 
 
   interface FormState {
     name: string,

@@ -10,6 +10,10 @@ router.post('/create-new-product', authenticateJwt, isSuperAdmin, upload.array('
 
 router.get('/fetch-admin-products', authenticateJwt, isSuperAdmin, fetchAllProductsForAdmin);
 
+router.delete('/fetch-client-products', authenticateJwt, deleteProduct);
+
+
+
 router.get('/:id', authenticateJwt, isSuperAdmin, getProductByID ); 
 router.put('/:id', authenticateJwt, isSuperAdmin, updateProduct);
 router.delete('/:id', authenticateJwt, isSuperAdmin, deleteProduct);

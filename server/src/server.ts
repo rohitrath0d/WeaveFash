@@ -3,11 +3,15 @@ import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
+
 import authRoutes from './routes/authRoutes'         // now, we need to use authRoutes, bcoz we need to create Main Auth handler, which will handle all the child routes of this auth.
 import productRoutes from './routes/productRoutes'   
-
 import couponRoutes from './routes/couponRoutes'
 import settingRoutes from './routes/settingRoutes'
+import cartRoutes from './routes/cartRoutes'
+import addressRoutes from './routes/addressRoutes'
+import orderRoutes from './routes/orderRoutes'
+
 
 // the first thing we need to do in this file (server.ts) --> always, the first main thing is to do to load environment variables
 // load all  you r environment variables
@@ -44,6 +48,16 @@ app.use('/api/coupons', couponRoutes)
 
 // setting routes
 app.use('/api/settings', settingRoutes)
+
+// cart routes
+app.use('/api/cart', cartRoutes)
+
+// address routes
+app.get('/api/address', addressRoutes)
+
+// order routes
+app.get('/api/order', orderRoutes)
+
 
 app.get('/', (req, res) => {
     res.send('Hello from E-commerce backend')

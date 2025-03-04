@@ -1,4 +1,4 @@
-import arcjet, { detectBot, fixedWindow, protectSignup, sensitiveInfo, shield, validateEmail } from "@arcjet/next";
+import arcjet, { detectBot, fixedWindow, protectSignup, sensitiveInfo, shield, slidingWindow, validateEmail } from "@arcjet/next";
 
 // arcjet configuration for the registration/sign-up. same we also have to create for login, coz it can also be tampered, hence have to be secured.
 export const protectSignUpRules = arcjet({
@@ -95,6 +95,28 @@ export const createCouponRules = arcjet({
     sensitiveInfo({
       mode: "LIVE",
       deny: ["EMAIL", "CREDIT_CARD_NUMBER", "PHONE_NUMBER"],
+    }),
+  ],
+});
+
+
+// rules for payment flow using arcjet validation
+export const prePaymentFlowRules = arcjet({
+  key: process.env.ARCJET_KEY!,
+  rules: [
+    shield({ mode: "LIVE" }),
+    detectBot({
+      mode: "LIVE",
+      allow: [],
+    }),
+    validateEmail({
+      mode: "LIVE",
+      block: ["DISPOSABLE", "INVALID", "NO_MX_RECORDS", "FREE"],
+    }),
+    slidingWindow({
+      mode: "LIVE",
+      interval: "10m",
+      max: 5,
     }),
   ],
 });
