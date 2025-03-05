@@ -42,21 +42,17 @@ app.use('/api/auth', authRoutes)                // main handler route of authRou
 
 // product routes
 app.use('/api/products', productRoutes)      
-
 // coupon routes
 app.use('/api/coupons', couponRoutes)
-
 // setting routes
 app.use('/api/settings', settingRoutes)
-
 // cart routes
 app.use('/api/cart', cartRoutes)
-
 // address routes
-app.get('/api/address', addressRoutes)
-
+app.use('/api/address', addressRoutes)
 // order routes
-app.get('/api/order', orderRoutes)
+app.use('/api/order', orderRoutes)
+
 
 
 app.get('/', (req, res) => {

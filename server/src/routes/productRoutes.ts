@@ -1,7 +1,7 @@
 import express from 'express';
 import { authenticateJwt, isSuperAdmin } from '../middlewares/authMiddleware';
 import { upload } from '../middlewares/uploadMiddleware';
-import { createProduct, deleteProduct, fetchAllProductsForAdmin, getProductByID, updateProduct } from '../controllers/productController';
+import { createProduct, deleteProduct, fetchAllProductsForAdmin, getProductByID, updateProduct, getProductsForClient } from '../controllers/productController';
 
 
 const router = express.Router();
@@ -9,12 +9,12 @@ const router = express.Router();
 router.post('/create-new-product', authenticateJwt, isSuperAdmin, upload.array('images', 5), createProduct);
 
 router.get('/fetch-admin-products', authenticateJwt, isSuperAdmin, fetchAllProductsForAdmin);
-
-router.delete('/fetch-client-products', authenticateJwt, deleteProduct);
-
+router.get('/fetch-client-products', authenticateJwt, getProductsForClient);
 
 
-router.get('/:id', authenticateJwt, isSuperAdmin, getProductByID ); 
+
+
+router.get('/:id', authenticateJwt, getProductByID ); 
 router.put('/:id', authenticateJwt, isSuperAdmin, updateProduct);
 router.delete('/:id', authenticateJwt, isSuperAdmin, deleteProduct);
 

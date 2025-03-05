@@ -110,10 +110,10 @@ function HomePage() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-center text-3xl font-semibold mb-2">
-            THE AUTUMN EDIT
+            THE WINTER EDIT
           </h2>
           <p className="text-center text-gray-500 mb-8">
-          Crafted to embrace your comfort and the cozy essence of autumn.
+            Designed to keep your satisfaction and warmth
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {gridItems.map((gridItem, index) => (

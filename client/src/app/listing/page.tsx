@@ -23,6 +23,7 @@ import { brands, categories, sizes } from "@/utils/config";
 import { ChevronLeft, ChevronRight, SlidersHorizontal } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import imageBannerUnsplash from "../../../../client/public/images/imageBannerUnsplash.png"
 
 const colors = [
   { name: "Navy", class: "bg-[#0F172A]" },
@@ -211,14 +212,16 @@ function ProductListingPage() {
     <div className="min-h-screen bg-white">
       <div className="relative h-[300px] overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop"
+          // src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop"
+          src="https://media.istockphoto.com/id/2155498776/photo/woman-walking-with-shopping-bags-on-city-street.jpg?s=2048x2048&w=is&k=20&c=9VouGfwLTn-_JUTDz64NtCkmPTYtekfFtWVvMTsHnps="
+          // src= "{imageBannerUnsplash}"
           alt="Listing Page Banner"
           className="w-full object-cover h-full "
         />
         <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
           <div className="text-center text-white">
-            <h1 className="text-4xl font-bold mb-2">HOT COLLECTION</h1>
-            <p className="text-lg">Discover our latest collection</p>
+            <h1 className="text-4xl font-bold mb-2">SUMMER SALE IS LIVE</h1>
+            <p className="text-lg">Avail the best discount now!</p>
           </div>
         </div>
       </div>

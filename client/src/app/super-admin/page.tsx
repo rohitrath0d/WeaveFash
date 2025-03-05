@@ -1,9 +1,8 @@
 import React from 'react'
+import SuperAdminCouponsListingPage from './coupons/list/page'
 
 function SuperAdmin() {
-  return (
-    <div>SuperAdmin</div>
-  )
+  return <SuperAdminCouponsListingPage/>
 }
 
 export default SuperAdmin
