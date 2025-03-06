@@ -210,10 +210,11 @@ function ProductListingPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="relative h-[300px] overflow-hidden">
+      <div className="relative h-[400px] overflow-hidden">
         <img
           // src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop"
-          src="https://media.istockphoto.com/id/2155498776/photo/woman-walking-with-shopping-bags-on-city-street.jpg?s=2048x2048&w=is&k=20&c=9VouGfwLTn-_JUTDz64NtCkmPTYtekfFtWVvMTsHnps="
+          // src="https://media.istockphoto.com/id/2155498776/photo/woman-walking-with-shopping-bags-on-city-street.jpg?s=2048x2048&w=is&k=20&c=9VouGfwLTn-_JUTDz64NtCkmPTYtekfFtWVvMTsHnps="
+          src="https://images.unsplash.com/photo-1523194258983-4ef0203f0c47?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           // src= "{imageBannerUnsplash}"
           alt="Listing Page Banner"
           className="w-full object-cover h-full "
@@ -221,7 +222,7 @@ function ProductListingPage() {
         <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
           <div className="text-center text-white">
             <h1 className="text-4xl font-bold mb-2">SUMMER SALE IS LIVE</h1>
-            <p className="text-lg">Avail the best discount now!</p>
+            <p className="text-lg font-bold">Avail the best discount now!</p>
           </div>
         </div>
       </div>
