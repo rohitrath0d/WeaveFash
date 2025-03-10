@@ -4,7 +4,9 @@ import Image from "next/image";
 // import banner from '../../../../public/images/banner2.jpg'
 import model from '../../../../public/images/model2.jpg'
 // import logo from '../../../../public/images/logo1.png'
-import shoplogo from '../../../../public/images/shoplogo.png'
+// import shoplogo from '../../../../public/images/shoplogo.png'
+import logo from "../../../../public/images/logo.png"
+
 import { Label } from "../../../components/ui/label";
 import { Input } from "../../../components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -73,7 +75,7 @@ function LoginPage() {
             <div className="max-w-md w-full mx-auto">
                 <div className="flex justify-center">
                     <Image
-                        src={shoplogo}
+                        src={logo}
                         width={400}
                         height={200}
                         alt="Logo"

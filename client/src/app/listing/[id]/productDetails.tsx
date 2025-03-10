@@ -9,7 +9,16 @@ import ProductDetailsSkeleton from "./productSkeleton";
 import { useCartStore } from "@/store/useCartStore";
 import { useToast } from "@/hooks/use-toast";
 
+
+// interface ProductDetailsContentPageProps {
+//     id: string;
+  
+// }
+
+
 function ProductDetailsContent({ id }: { id: string }) {
+  // function ProductDetailsContent({ id }: ProductDetailsContentPageProps) {
+
   const [product, setProduct] = useState<any>(null);
   const { getProductById, isLoading } = useProductStore();
   const { addToCart } = useCartStore();

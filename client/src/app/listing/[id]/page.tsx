@@ -2,7 +2,11 @@ import { Suspense } from "react";
 import ProductDetailsSkeleton from "../[id]/productSkeleton";
 import ProductDetailsContent from "../[id]/productDetails";
 
+
+
+// function ProductDetailsPage({ params }: { params: { id: string } }) {
 function ProductDetailsPage({ params }: { params: { id: string } }) {
+
   return (
     <Suspense fallback={<ProductDetailsSkeleton />}>
       <ProductDetailsContent id={params.id} />
@@ -10,4 +14,4 @@ function ProductDetailsPage({ params }: { params: { id: string } }) {
   );
 }
 
-export default ProductDetailsPage; 
+export default ProductDetailsPage;

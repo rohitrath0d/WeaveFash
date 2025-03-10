@@ -20,6 +20,8 @@ import {
 } from "../ui/sheet";
 import { useEffect, useState } from "react";
 import { useCartStore } from "@/store/useCartStore";
+import Image from "next/image";
+import logo from "../../../public/images/logo.png"
 
 const navItems  = [
   {
@@ -91,7 +93,7 @@ function Header() {
             <div className="space-y-3">
               {navItems.map((navItem) => (
                 <p
-                  className="block w-full font-semibold p-2 cursor-pointer"
+                  className="block w-full ml-0 font-semibold p-2 cursor-pointer"
                   onClick={() => {
                     setShowSheetDialog(false);
                     router.push(navItem.to);
@@ -131,7 +133,14 @@ function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <Link className="text-2xl font-bold" href="/">
-            WeaveFash
+            <Image
+              src={logo}
+              alt="logo"
+              width={220}
+              height={250}
+              // className=""
+            />
+            {/* <img src={shoplogo} alt="shoplogo" /> */}
           </Link>
           <div className="hidden lg:flex items-center space-x-8 flex-1 justify-center">
             <nav className="flex items-center space-x-8">

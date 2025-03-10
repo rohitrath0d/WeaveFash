@@ -2,7 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import { useSettingsStore } from "@/store/useSettingStore";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import homepagebanner from "../../public/images/homepagebanner.jpg"
+import Image from "next/image";
+
+// lucide react social media icons
+{/* <Instagram /> */}
+import {Instagram, Facebook, Phone, Headset, House, Info, Twitter, MapPinHouse} from 'lucide-react'
 
 const gridItems = [
   {
@@ -39,6 +46,8 @@ function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const { banners, featuredProducts, fetchFeaturedProducts, fetchBanners } =
     useSettingsStore();
+  
+  // const router = useRouter();
 
   useEffect(() => {
     fetchBanners();
@@ -76,19 +85,22 @@ function HomePage() {
             <div className="relative h-full container mx-auto px-4 flex items-center">
               <div className="text-white space-y-6">
                 <span className="text-sm uppercase tracking-wider">
-                  I AM JOHN
+                  {/* I AM JOHN */}
                 </span>
                 <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-                  BEST SELLING
+                  WeaveFash
                   <br />
-                  E-COMMERCE WEBSITE
+                  Best Trending Fashion
                 </h1>
                 <p className="text-lg">
-                  A Creative, Flexible , Clean, Easy to use and
+                  SHOP. CLICK. ENJOY
+
                   <br />
-                  High Performance E-Commerce Theme
+                  
                 </p>
-                <Button className="bg-white text-black hover:bg-gray-100 px-8 py-6 text-lg">
+                <Button className="bg-white text-black hover:bg-gray-100 px-8 py-6 text-lg"
+                  // onClick={router.push('/api/products')}
+                >
                   SHOP NOW
                 </Button>
               </div>
@@ -110,11 +122,85 @@ function HomePage() {
         </div>
       </section>
 
+
+      {/* Description section */}
+      <section className="py-12">
+        <div className="container mx-auto px-4 relative ">
+
+        <div className="items-center p-6">
+        <h1 className="text-3xl text-center font-semibold mb-2 "> Discover our offerings</h1>
+        <p className="text-center text-gray-500 mb-8 ">Elevate your shopping experience</p>
+
+          {/* paragraph description section */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          
+          {/* Grid layout for paragraphs */}
+          {/* Column1 */}
+
+          <div>
+            <h3 className="text-lg font-semibold p-2">
+              Elevate Your Everyday Look
+            </h3>
+            <p className="text-gray-600">
+            Who says everyday style can’t be extraordinary?
+            Step up your fashion game.
+            From casual wear to work essentials, and everything in between, our pieces are made to blend seamlessly into your life.            </p>
+          </div>
+
+          {/* Column2 */}
+          <div>
+          <h3 className="text-lg font-semibold p-2 ">
+          Fashion for Every Mood
+          </h3>
+          <p className="text-gray-600">
+          Life is full of moods, and so is your wardrobe. Whether you’re feeling bold, serene, or simply casual, we have a style for every vibe.
+          </p>
+          </div>
+
+          {/* Column 3 */}
+          <div>
+            <h3 className="text-lg font-semibold">
+              Your Style, Your Story
+            </h3>
+            <p className="text-gray-600 p-2">
+              Fashion is an extension of who you are — it tells your story without saying a word.
+              Each item is a reflection of your individuality, empowering you to own your narrative in the world of fashion.
+            </p>
+          </div>
+      </div>
+      </div>
+
+      {/* Image Wrapper */}
+      <div className="container relative w-full h-[600px] mt-10">
+
+        <Image 
+          src={homepagebanner}
+          alt="homepagebanner"
+          // height={700}
+          // width={800}
+          // className=" items-center flex flex-col"
+          className="w-full h-[600px] object-cover" 
+        />
+
+      {/* overlay text */}
+        <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+              <div className="text-white text-center space-y-4">
+                <h1 className="text-5xl font-semibold uppercase tracking-wider">
+                  SHOP. CLICK. ENJOY.
+                </h1>
+                <p className="text-lg">Your one-stop destination for fashion and style.</p>
+              </div>
+        </div>
+        </div>
+
+        </div>
+      </section>
+
       {/* grid section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-center text-3xl font-semibold mb-2">
-            THE WINTER EDIT
+            AUTUMN IS HERE
           </h2>
           <p className="text-center text-gray-500 mb-8">
             Designed to keep your satisfaction and warmth
@@ -180,7 +266,79 @@ function HomePage() {
             ))}
           </div>
         </div>
+        </section>
+
+
+        {/* contact and info section */}
+
+        <section>
+
+        <div className="container mx-auto object-cover bg-gray-300 mt-6 p-6 py-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-black text-center p-6">
+
+          <div>  
+            {/* Flexbox for icon and title */}
+            <div className="flex items-center justify-center gap-2">
+              <Info className="w-6 h-6 text-black"/>
+
+              <h1 className="text-2xl font-bold">
+                About us
+              </h1>
+            </div>
+
+            <p className=" text-black mt-4 p-3">
+              At <span className="font-semibold text-black">WeaveFash</span>, we believe that shopping should be effortless, exciting, and tailored to you.  
+              Whether you're searching for the latest fashion trends, exclusive deals, or a seamless shopping experience, we've got you covered.  
+            </p>
+          </div>
+            
+          <div>
+            <div className="flex items-center justify-center gap-2">
+            <Phone className="w-6 h-6 text-black"/>
+
+            <h1 className="text-2xl font-bold">
+              Contact
+            </h1>
+            </div>
+
+            <p className="flex flex-row gap-6 items-center justify-center mt-8  ">
+              <Instagram/> <Headset/> <Twitter/>
+              <Facebook/>
+
+            </p>
+          </div>
+
+          <div>
+            
+            <div className="flex items-center justify-center gap-2">
+            <MapPinHouse className="w-6 h-6 text-black" />
+            <h1 className="text-2xl font-bold">
+              Location
+            </h1>
+            </div>
+            
+            <p className="text-black mt-4 p-3 text-center justify-center">
+              <h1>WeaveFash HQ </h1>
+            <h1> 789 Maplewood Avenue Suite 405</h1>
+            <h1> Rivertown, CA 92834 </h1>
+             <h1> United States </h1>
+            </p>
+          </div>
+
+
+          </div>
+
+        </div>
+
+      
+
       </section>
+
+
+      
+
+
+
     </div>
   );
 }
