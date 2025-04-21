@@ -317,12 +317,12 @@ function HomePage() {
             </h1>
             </div>
             
-            <p className="text-black mt-4 p-3 text-center justify-center">
+            <div className="text-black mt-4 p-3 text-center justify-center">
               <h1>WeaveFash HQ </h1>
             <h1> 789 Maplewood Avenue Suite 405</h1>
             <h1> Rivertown, CA 92834 </h1>
              <h1> United States </h1>
-            </p>
+            </div>
           </div>
 
 

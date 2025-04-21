@@ -4,7 +4,7 @@ import Image from "next/image";
 // import banner from '../../../../public/images/banner2.jpg' 
 import model from '../../../../public/images/model2.jpg'
 // import logo from '../../../../public/images/logo1.png'
-import shoplogo from '../../../../public/images/shoplogo.png'
+// import shoplogo from '../../../../public/images/shoplogo.png'
 import { Label } from "../../../components/ui/label";
 import { Input } from "../../../components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -74,12 +74,12 @@ function RegisterPage() {
         <div className="w-full lg:w-1/2 flex flex-col p-8 lg:p-16 justify-center">
         <div className="max-w-md w-full mx-auto">
             <div className="flex justify-center">
-                <Image
+                {/* <Image
                  src={shoplogo}
                  width={200}
                  height={50}
                  alt="Logo"
-                />
+                /> */}
             </div>
            <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-1">
