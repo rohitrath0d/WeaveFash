@@ -41,27 +41,8 @@ export const authenticateJwt = (req: AuthenticatedRequest, res: Response, next: 
         console.error(e);
         res.status(401).json({ success: false, error: "Access token is invalid or not found" });
         
-    });
-})).then((res)=>{
-        const payload = res.payload as JWTPayload & {
-            userId: string;
-            email: string;
-            role: string;
-        };
-        // adding current user to the request object
-        req.user = {
-            userId: payload.userId,
-            email: payload.email,
-            role: payload.role
-        };
-        next()
-    }).catch((e) => {
-        console.error(e);
-        res.status(401).json({ success: false, error: "Access token is invalid or not found" });
-        
-    });
+    })
 };
-
 
 export const isSuperAdmin =  (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
     if(req.user && req.user.role === 'SUPER_ADMIN'){
