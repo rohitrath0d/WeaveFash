@@ -12,12 +12,13 @@
 //     </div>
 //   );
 // }
+
 "use client";
 
 import { Suspense } from 'react';
 import SuperAdminManageProductPage  from "@/app/super-admin/products/add/page";
 
-export default function AddProductPage() {
+function ManageProductPageFallback() {
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Add Product</h1>
@@ -27,3 +28,4 @@ export default function AddProductPage() {
     </div>
   );
 }
+export default ManageProductPageFallback;
