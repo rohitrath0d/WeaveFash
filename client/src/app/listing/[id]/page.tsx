@@ -8,7 +8,7 @@ import ProductDetailsContent from "../[id]/productDetails";
 //     id: string;
 //   };  
 // }
-type PageProps {
+type PageProps = {
      params: {
     id: string;
   };  
