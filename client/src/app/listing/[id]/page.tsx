@@ -3,7 +3,12 @@ import ProductDetailsSkeleton from "../[id]/productSkeleton";
 import ProductDetailsContent from "../[id]/productDetails";
 
 
-interface PageProps {
+// interface PageProps {
+//      params: {
+//     id: string;
+//   };  
+// }
+type PageProps {
      params: {
     id: string;
   };  
