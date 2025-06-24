@@ -3,6 +3,12 @@ import ProductDetailsSkeleton from "../[id]/productSkeleton";
 import ProductDetailsContent from "../[id]/productDetails";
 
 
+interface ProductDetailsPageProps {
+     params: {
+    id: string;
+  };  
+}
+
 
 // function ProductDetailsPage({ params }: { params: { id: string } }) {
 function ProductDetailsPage({ params }: { params: { id: string } }) {
