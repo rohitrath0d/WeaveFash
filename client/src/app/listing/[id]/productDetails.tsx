@@ -15,8 +15,8 @@ interface ProductDetailsContentPageProps {
 }
 
 
-function ProductDetailsContent({ id }: { id: string }) {
-  // function ProductDetailsContent({ id }: ProductDetailsContentPageProps) {
+// function ProductDetailsContent({ id }: { id: string }) {
+  function ProductDetailsContent({ id }: ProductDetailsContentPageProps) {
 
   const [product, setProduct] = useState<any>(null);
   const { getProductById, isLoading } = useProductStore();
