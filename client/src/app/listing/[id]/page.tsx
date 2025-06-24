@@ -3,7 +3,7 @@ import ProductDetailsSkeleton from "../[id]/productSkeleton";
 import ProductDetailsContent from "../[id]/productDetails";
 
 
-interface ProductDetailsPageProps {
+interface PageProps {
      params: {
     id: string;
   };  
@@ -12,7 +12,7 @@ interface ProductDetailsPageProps {
 
 // function ProductDetailsPage({ params }: { params: { id: string } }) {
 // function ProductDetailsPage({ params }: { params: { id: string } }) {
-function ProductDetailsPage({ params }: ProductDetailsPageProps) {
+function ProductDetailsPage({ params }: PageProps) {
 
   return (
     <Suspense fallback={<ProductDetailsSkeleton />}>
