@@ -10,10 +10,9 @@ import { useCartStore } from "@/store/useCartStore";
 import { useToast } from "@/hooks/use-toast";
 
 
-// interface ProductDetailsContentPageProps {
-//     id: string;
-  
-// }
+interface ProductDetailsContentPageProps {
+    id: string;
+}
 
 
 function ProductDetailsContent({ id }: { id: string }) {
