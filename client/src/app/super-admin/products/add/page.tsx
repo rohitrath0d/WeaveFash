@@ -12,7 +12,8 @@ import { protectProductFormAction } from '@/actions/product';
   import { useRouter, useSearchParams } from 'next/navigation';
   import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
   import {brands, colors, sizes, categories} from '../../../../utils/config'
- 
+  import { Suspense } from "react";
+
 
   interface FormState {
     name: string,
@@ -169,6 +170,7 @@ import { protectProductFormAction } from '@/actions/product';
     }
 
     return (
+      <Suspense fallback={<div>Loading...</div>}>
       <div className='p-6'>
 
         <div className='flex flex-col gap-6'>
@@ -404,6 +406,7 @@ import { protectProductFormAction } from '@/actions/product';
           </form>
         </div>
       </div>
+      </Suspense>
     )
   }
 
