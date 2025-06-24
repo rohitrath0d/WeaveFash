@@ -13,12 +13,13 @@
 //   );
 // }
 
-"use client";
 
 import { Suspense } from 'react';
 import SuperAdminManageProductPage  from "@/app/super-admin/products/add/page";
 
-function ManageProductPageFallback() {
+
+// The default export of page.jsx is used internally by Next.js to be rendered in the route. Update your code to wrap the UpdatePrompt in a parent component:
+const SuspenseBoundary =() => {
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Add Product</h1>
@@ -28,4 +29,4 @@ function ManageProductPageFallback() {
     </div>
   );
 }
-export default ManageProductPageFallback;
+export default SuspenseBoundary;
