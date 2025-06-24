@@ -11,7 +11,8 @@ interface ProductDetailsPageProps {
 
 
 // function ProductDetailsPage({ params }: { params: { id: string } }) {
-function ProductDetailsPage({ params }: { params: { id: string } }) {
+// function ProductDetailsPage({ params }: { params: { id: string } }) {
+function ProductDetailsPage({ params }: ProductDetailsPageProps) {
 
   return (
     <Suspense fallback={<ProductDetailsSkeleton />}>
