@@ -29,4 +29,4 @@ const SuspenseBoundary =() => {
     </div>
   );
 }
-export default SuspenseBoundary;
+// export default SuspenseBoundary;
