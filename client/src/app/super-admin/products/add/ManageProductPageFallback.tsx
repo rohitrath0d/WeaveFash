@@ -12,10 +12,10 @@
 //     </div>
 //   );
 // }
+"use client";
 
 import { Suspense } from 'react';
 import SuperAdminManageProductPage  from "@/app/super-admin/products/add/page";
-
 
 export default function AddProductPage() {
   return (
