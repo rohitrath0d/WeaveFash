@@ -67,7 +67,7 @@ const menuItems = [
     {
         name: 'Log out',
         icon:  LogOut,
-        href: ''  
+        href: '/login'  
     },
 
 ]
