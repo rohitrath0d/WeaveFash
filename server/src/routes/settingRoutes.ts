@@ -18,13 +18,15 @@ router.post(
   addFeatureBanners
 );
 
-router.get("/get-banners", authenticateJwt, fetchFeatureBanners);
+// router.get("/get-banners", authenticateJwt, fetchFeatureBanners);
+router.get("/get-banners", fetchFeatureBanners);
 router.post(
   "/update-feature-products",
   authenticateJwt,
   isSuperAdmin,
   updateFeaturedProducts
 );
-router.get("/fetch-feature-products", authenticateJwt, getFeaturedProducts);
+// router.get("/fetch-feature-products", authenticateJwt, getFeaturedProducts);
+router.get("/fetch-feature-products", getFeaturedProducts);
 
 export default router;
