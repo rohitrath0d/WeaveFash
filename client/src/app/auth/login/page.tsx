@@ -56,7 +56,8 @@ function LoginPage() {
             // in login, we have set the user (user: response.data.user)
             const user = useAuthStore.getState().user   //here, we will get the user
             if (user?.role === 'SUPER_ADMIN') router.push('/super-admin')
-            else router.push('/home-page')
+            // else router.push('/home-page')
+            else router.push('/')
 
         }
     };
