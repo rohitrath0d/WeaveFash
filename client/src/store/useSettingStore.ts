@@ -35,23 +35,32 @@ interface FeatureBanner {
     fetchBanners: async () => {
       set({ isLoading: true, error: null });
       try {
-        const response = await axios.get(`${API_ROUTES.SETTINGS}/get-banners`, {
-          withCredentials: true,
-        });
+        // const response = await axios.get(`${API_ROUTES.SETTINGS}/get-banners`, {
+        //   withCredentials: true,
+        // });
+        const response = await axios.get(`${API_ROUTES.SETTINGS}/get-banners`);
         set({ banners: response.data.banners, isLoading: false });
       } catch (e) {
         console.error(e);
-        set({ error: "Failed to fetch banners", isLoading: false });
+        set({ error: "Failed to fetch banners", isLoading: false });  
       }
     },
+
     fetchFeaturedProducts: async () => {
       set({ isLoading: true, error: null });
       try {
+        // const response = await axios.get(
+        //   `${API_ROUTES.SETTINGS}/fetch-feature-products`,
+        //   {
+        //     withCredentials: true,
+        //   }
+        // );
+
         const response = await axios.get(
           `${API_ROUTES.SETTINGS}/fetch-feature-products`,
-          {
-            withCredentials: true,
-          }
+          // {
+          //   withCredentials: true,
+          // }
         );
         set({
           featuredProducts: response.data.featuredProducts,
