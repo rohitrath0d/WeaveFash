@@ -56,7 +56,7 @@ function HomePage() {
   useEffect(() => {
     fetchBanners();
     fetchFeaturedProducts();
-  }, [fetchBanners, fetchFeaturedProducts, fetchBanners]);    // Refetch when auth changes
+  }, [fetchBanners, fetchFeaturedProducts, isAuthenticated]);    // Refetch when auth changes
 
   useEffect(() => {
     const bannerTimer = setInterval(() => {
@@ -335,21 +335,9 @@ function HomePage() {
                 <p className="text-base">United States</p>
               </div>
             </div>
-
-
           </div>
-
         </div>
-
-
-
       </section>
-
-
-
-
-
-
     </div>
   );
 }
