@@ -325,21 +325,9 @@ function HomePage() {
                 <h1> United States </h1>
               </div>
             </div>
-
-
           </div>
-
         </div>
-
-
-
       </section>
-
-
-
-
-
-
     </div>
   );
 }
