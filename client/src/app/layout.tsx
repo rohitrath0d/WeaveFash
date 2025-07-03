@@ -4,7 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/user/header";
 import CommonLayout from "@/components/common/common-layout";
-import '@/lib/authAxios'; // This runs the interceptor setup
+import authAxios from '@/lib/authAxios'; // This runs the interceptor setup
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
