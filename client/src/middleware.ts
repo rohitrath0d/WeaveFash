@@ -24,7 +24,7 @@ export async function middleware(request: NextRequest) {
     if (accessToken) {
         // here, we need to verify the token, and check if the role is: user or super-admin
         try {
-            const { payload } = await jwtVerify(accessToken, new TextEncoder().encode(process.env.JWT_SECRET_FRONTEND));
+            const { payload } = await jwtVerify(accessToken, new TextEncoder().encode(process.env.JWT_SECRET));
             const { role } = payload as {
                 role: string
             }
