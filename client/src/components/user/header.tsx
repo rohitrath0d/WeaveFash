@@ -326,7 +326,7 @@ function Header() {
   async function handleLogout() {
     const success = await logout();
     // router.push("/auth/login");
-    // router.push("/home-page");
+    router.push("/");
     //  if (success) {
     //     // Only navigate if logout was successful
     //     router.push("/auth/login");
