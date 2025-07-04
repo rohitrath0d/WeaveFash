@@ -2,6 +2,9 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { jwtVerify } from "jose";
+import { API_BASE_URL } from "./utils/api";
+
+
 
 // Basically, we need to keep track of 3 things:-
 // -->1. Public routes -> anyone can access
@@ -25,7 +28,7 @@ export async function middleware(request: NextRequest) {
     if (accessToken) {
         // here, we need to verify the token, and check if the role is: user or super-admin
         try {
-            const { payload } = await jwtVerify(accessToken, new TextEncoder().encode(process.env.JWT_SECRET));
+            const { payload } = await jwtVerify(accessToken, new TextEncoder().encode(process.env.JWT_SECRET_BACKEND!));
             const { role } = payload as {
                 role: string
             }
@@ -48,15 +51,20 @@ export async function middleware(request: NextRequest) {
         } catch (e) {
             console.error('Token verification failed', e);
 
-            const refreshResponse = await fetch('http://localhost:3000/api/auth/refresh-token', {
+            // const refreshResponse = await fetch('http://localhost:3000/api/auth/refresh-token', {
+            //     method: "POST",
+            //     credentials: "include",
+            // }
+
+            const refreshResponse = await fetch(`${API_BASE_URL}/api/auth/refresh-token`, {
                 method: "POST",
                 credentials: "include",
             }
             );
 
             if (refreshResponse.ok) {
-                const response = NextResponse.next()
-                response.cookies.set('accessToken', refreshResponse.headers.get('Set-cookie') || "");
+                const response = NextResponse.next()            // browser has set the new cookie already
+                // response.cookies.set('accessToken', refreshResponse.headers.get('Set-cookie') || "");
                 return response;
             } else{
                 // ur refresh-token is also failed here
