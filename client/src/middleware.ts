@@ -15,7 +15,7 @@ import { API_BASE_URL } from "./utils/api";
 const publicRoutes = ['/auth/register', '/auth/login', '/home-page'];
 const superAdminRoutes = ['/super-admin', 'super-admin/:path*'];
 // const userRoutes = ['/home-page'];
-const userRoutes = ['/cart', '/orders', '/checkout', 'listing'];
+const userRoutes = ['/cart', '/orders', '/checkout', '/listing'];
 
 
 export async function middleware(request: NextRequest) {
