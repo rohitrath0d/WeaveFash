@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useSettingsStore } from "@/store/useSettingStore";
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react";
-import homepagebanner from "../../public/images/homepagebanner.jpg"
+import homepagebanner from "../../../public/images/homepagebanner.jpg"
 import Image from "next/image";
 
 // lucide react social media icons
