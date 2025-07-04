@@ -14,7 +14,7 @@ function generateToken(userId: string, email: string, role: string) {
       email,
       role,
     },
-    process.env.JWT_SECRET_BACKEND!,
+    process.env.JWT_SECRET!,
     { expiresIn: "60m" }
   );
 
@@ -81,10 +81,12 @@ export const register = async (req: Request, res: Response): Promise<void> => {
       success: true,
       userId: user.id,      // This will give a unique ID
     });
+    return;
 
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Registration failed" });
+    return;
   }
 };
 
@@ -105,7 +107,6 @@ export const login = async (req: Request, res: Response): Promise<void> => {
         success: false,
         error: "Invalid credentials",
       });
-
       return;
     }
 
@@ -141,10 +142,12 @@ export const login = async (req: Request, res: Response): Promise<void> => {
         role: extractCurrentUSer.role,
       }
     })
+    return;
   } catch (error) {
     console.log(error);
     // return res.status(500).json({ error: "Login failed" });
     res.status(500).json({ error: "Login failed" });
+    return;
   }
 };
 
@@ -156,6 +159,7 @@ export const refreshAccessToken = async (req: Request, res: Response): Promise<v
       success: false,
       error: 'Invalid refresh token'
     })
+    return;
   }
 
   try {
@@ -172,7 +176,7 @@ export const refreshAccessToken = async (req: Request, res: Response): Promise<v
         success: false,
         error: 'User not found'
       })
-      return
+      return;
     }
     // after previous step, we again have to generate accessToken & refreshToken
     const { accessToken, refreshToken: newRefreshToken } = generateToken(user.id, user.email, user.role)
@@ -196,10 +200,12 @@ export const refreshAccessToken = async (req: Request, res: Response): Promise<v
       success: true,
       message: 'Refresh token refreshed successfully '
     })
+    return;
   } catch (error) {
     console.error(error);
     // return res.status(500).json({ error: "Refresh token error" })
-    res.status(500).json({ error: "Refresh token error" })
+    res.status(500).json({ error: "Refresh token error" }) 
+    return;
   }
 }
 
@@ -213,4 +219,5 @@ export const logout = async (req: Request, res: Response): Promise<void> => {
     success: true,
     message: 'User Logged out successfully',
   });
+  return;
 } 
