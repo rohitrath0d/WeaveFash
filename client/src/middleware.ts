@@ -12,7 +12,7 @@ import { API_BASE_URL } from "./utils/api";
 // -->3. Client-side routes
 // -->4. Super-admin routes  
 
-const publicRoutes = ['/auth/register', '/auth/login', '/home-page'];
+const publicRoutes = ['/auth/register', '/auth/login', '/home-page', '/'];
 const superAdminRoutes = ['/super-admin', 'super-admin/:path*'];
 // const userRoutes = ['/home-page'];
 const userRoutes = ['/cart', '/orders', '/checkout', '/listing'];
@@ -34,7 +34,8 @@ export async function middleware(request: NextRequest) {
             }
 
             if (publicRoutes.includes(pathname)) {
-                return NextResponse.redirect(new URL(role === 'SUPER_ADMIN' ? '/super-admin' : '/home-page', request.url));            // why? bcoz token is already token, meaning user is already logged in. So, if user is logged in, then they can't access the publicRoutes. hence, redirecting users 
+                // return NextResponse.redirect(new URL(role === 'SUPER_ADMIN' ? '/super-admin' : '/home-page', request.url));            // why? bcoz token is already token, meaning user is already logged in. So, if user is logged in, then they can't access the publicRoutes. hence, redirecting users 
+                return NextResponse.redirect(new URL(role === 'SUPER_ADMIN' ? '/super-admin' : '/', request.url));            // why? bcoz token is already token, meaning user is already logged in. So, if user is logged in, then they can't access the publicRoutes. hence, redirecting users 
             }
 
             // now, if the user is a super-admin, and they try to access any user-routes
@@ -44,7 +45,8 @@ export async function middleware(request: NextRequest) {
             }
 
             if (role !== 'SUPER_ADMIN' && superAdminRoutes.some((route) => pathname.startsWith(route))) {
-                return NextResponse.redirect(new URL('/home-page', request.url));
+                // return NextResponse.redirect(new URL('/home-page', request.url));
+                return NextResponse.redirect(new URL('/', request.url));
             }
 
             return NextResponse.next();
@@ -66,26 +68,29 @@ export async function middleware(request: NextRequest) {
                 const response = NextResponse.next()            // browser has set the new cookie already
                 // response.cookies.set('accessToken', refreshResponse.headers.get('Set-cookie') || "");
                 return response;
-            } else{
+            } else {
                 // ur refresh-token is also failed here
                 // const response = NextResponse.redirect(new URL('/auth/login', request.url));
-                const response = NextResponse.redirect(new URL('/home-page', request.url));
+                // const response = NextResponse.redirect(new URL('/home-page', request.url));
+                const response = NextResponse.redirect(new URL('/', request.url));
 
                 // we need to delete the accessToken/refreshToken (the existing token, here)
                 response.cookies.delete('accessToken')
                 response.cookies.delete('refreshToken')
-                return response;            
+                return response;
             }
         }
 
     }
 
-    if(!publicRoutes.includes(pathname)){
+    // if(!publicRoutes.includes(pathname)){
+    if (!publicRoutes.some(route => pathname.startsWith(route))) {
         // return NextResponse.redirect(new URL('/auth/login', request.url))
-        return NextResponse.redirect(new URL('/home-page', request.url))
+        // return NextResponse.redirect(new URL('/home-page', request.url))
+        return NextResponse.redirect(new URL('/', request.url))
     }
 
-    return NextResponse.next(); 
+    return NextResponse.next();
 }
 
 // exporting config
