@@ -9,9 +9,10 @@ import { jwtVerify } from "jose";
 // -->3. Client-side routes
 // -->4. Super-admin routes  
 
-const publicRoutes = ['/auth/register', '/auth/login'];
+const publicRoutes = ['/auth/register', '/auth/login', '/home-page'];
 const superAdminRoutes = ['/super-admin', 'super-admin/:path*'];
-const userRoutes = ['/home-page'];
+// const userRoutes = ['/home-page'];
+const userRoutes = ['/cart', '/orders', '/checkout', 'listing'];
 
 
 export async function middleware(request: NextRequest) {
@@ -59,7 +60,8 @@ export async function middleware(request: NextRequest) {
                 return response;
             } else{
                 // ur refresh-token is also failed here
-                const response = NextResponse.redirect(new URL('/auth/login', request.url));
+                // const response = NextResponse.redirect(new URL('/auth/login', request.url));
+                const response = NextResponse.redirect(new URL('/home-page', request.url));
 
                 // we need to delete the accessToken/refreshToken (the existing token, here)
                 response.cookies.delete('accessToken')
@@ -71,7 +73,8 @@ export async function middleware(request: NextRequest) {
     }
 
     if(!publicRoutes.includes(pathname)){
-        return NextResponse.redirect(new URL('/auth/login', request.url))
+        // return NextResponse.redirect(new URL('/auth/login', request.url))
+        return NextResponse.redirect(new URL('/home-page', request.url))
     }
 
     return NextResponse.next(); 
