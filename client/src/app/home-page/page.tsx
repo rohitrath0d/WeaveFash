@@ -2,9 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import { useSettingsStore } from "@/store/useSettingStore";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react";
-import homepagebanner from "../../../public/images/homepagebanner.jpg"
+import homepagebanner from "../../public/images/homepagebanner.jpg"
 import Image from "next/image";
 
 // lucide react social media icons
@@ -50,12 +50,13 @@ function HomePage() {
 
   const { isAuthenticated } = useAuthStore();
 
-  // const router = useRouter();
+
+  const router = useRouter();
 
   useEffect(() => {
     fetchBanners();
     fetchFeaturedProducts();
-  }, [fetchBanners, fetchFeaturedProducts, isAuthenticated]);     // Refetch when auth changes
+  }, [fetchBanners, fetchFeaturedProducts, isAuthenticated]);    // Refetch when auth changes
 
   useEffect(() => {
     const bannerTimer = setInterval(() => {
@@ -94,14 +95,16 @@ function HomePage() {
                   <br />
                   Best Trending Fashion
                 </h1>
-                <p className="text-lg">
+                <span className="text-lg">
                   SHOP. CLICK. ENJOY
 
                   <br />
 
-                </p>
-                <Button className="bg-white text-black hover:bg-gray-100 px-8 py-6 text-lg"
-                // onClick={router.push('/api/products')}
+                </span>
+                <Button
+                  // onClick={() => router.push("/api/products")}
+                  onClick={() => router.push("/listing")}
+                  className="bg-white text-black hover:bg-gray-100 px-8 py-6 text-lg"
                 >
                   SHOP NOW
                 </Button>
@@ -115,8 +118,8 @@ function HomePage() {
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`w-2 h-2 rounded-full transition-all ${currentSlide === index
-                  ? "bg-white w-6"
-                  : "bg-white/50 hover:bg-white/75"
+                ? "bg-white w-6"
+                : "bg-white/50 hover:bg-white/75"
                 }`}
             />
           ))}
@@ -274,7 +277,7 @@ function HomePage() {
 
       <section>
 
-        <div className="container mx-auto object-cover bg-gray-300 mt-6 mb-10 p-6 py-20 px-10">
+        <div className="container mx-auto object-cover bg-gray-300 mt-6 p-6 py-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-black text-center p-6">
 
             <div>
@@ -318,11 +321,18 @@ function HomePage() {
                 </h1>
               </div>
 
-              <div className="text-black mt-4 p-3 text-center justify-center">
+              {/* <p className="text-black mt-4 p-3 text-center justify-center">
                 <h1>WeaveFash HQ </h1>
                 <h1> 789 Maplewood Avenue Suite 405</h1>
                 <h1> Rivertown, CA 92834 </h1>
                 <h1> United States </h1>
+              </p> */}
+
+              <div className="text-black mt-4 p-3 text-center justify-center space-y-2">
+                <h1 className="text-xl font-bold">WeaveFash HQ</h1>
+                <p className="text-base">789 Maplewood Avenue Suite 405</p>
+                <p className="text-base">Rivertown, CA 92834</p>
+                <p className="text-base">United States</p>
               </div>
             </div>
           </div>
