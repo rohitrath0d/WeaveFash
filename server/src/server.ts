@@ -26,7 +26,7 @@ const PORT = process.env.PORT || 3001;
 // enable cors & corsOptions
 const corsOptions    = {
     // origin:'http://localhost:3000',
-    origin:'https://weave-fash.vercel.app',
+    origin:'process.env.CLIENT_BASE_URL',
     credentials: true,                                      // as we are using cookie, credentials will be true.
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
