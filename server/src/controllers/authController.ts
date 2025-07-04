@@ -14,7 +14,7 @@ function generateToken(userId: string, email: string, role: string) {
       email,
       role,
     },
-    process.env.JWT_SECRET_BACKEND!,
+    process.env.JWT_SECRET!,
     { expiresIn: "60m" }
   );
 
@@ -89,9 +89,8 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 };
 
 // login method
-// export const login = async (req: Request, res: Response): Promise<void> => {
-export const login = async (req: Request, res: Response): Promise<Response> => {
-
+export const login = async (req: Request, res: Response): Promise<void> => {
+// export const login = async (req: Request, res: Response): Promise<Response> => {
   try {
     const { email, password } = req.body;
 
@@ -101,12 +100,13 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
     });
 
     if (!extractCurrentUSer || !(await bcrypt.compare(password, extractCurrentUSer.password))) {
-      return res.status(401).json({
+      // return res.status(401).json({
+      res.status(401).json({
         success: false,
         error: "Invalid credentials",
       });
 
-      // return;
+      return;
     }
 
     // create our access and refreshToken
@@ -130,7 +130,8 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
     //   data: { refreshToken },
     // });
 
-    return res.status(200).json({
+    // return res.status(200).json({
+    res.status(200).json({
       success: true,
       message: 'Login successful',
       user: {
@@ -142,12 +143,13 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
     })
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ error: "Login failed" });
+    // return res.status(500).json({ error: "Login failed" });
+    res.status(500).json({ error: "Login failed" });
   }
 };
 
-// export const refreshAccessToken = async (req: Request, res: Response): Promise<void> =>{
-export const refreshAccessToken = async (req: Request, res: Response): Promise<Response> => {
+export const refreshAccessToken = async (req: Request, res: Response): Promise<void> =>{
+// export const refreshAccessToken = async (req: Request, res: Response): Promise<Response> => {
   const refreshToken = req.cookies.refreshToken;
   if (!refreshToken) {
     res.status(401).json({
@@ -165,11 +167,12 @@ export const refreshAccessToken = async (req: Request, res: Response): Promise<R
 
     // if user is not found..1
     if (!user) {
-      return res.status(401).json({
+      // return res.status(401).json({
+      res.status(401).json({
         success: false,
         error: 'User not found'
       })
-      // return
+      return
     }
     // after previous step, we again have to generate accessToken & refreshToken
     const { accessToken, refreshToken: newRefreshToken } = generateToken(user.id, user.email, user.role)
@@ -188,13 +191,15 @@ export const refreshAccessToken = async (req: Request, res: Response): Promise<R
     //   data: { refreshToken: newRefreshToken },
     // });
 
-    return res.status(200).json({
+    // return res.status(200).json({
+    res.status(200).json({
       success: true,
       message: 'Refresh token refreshed successfully '
     })
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ error: "Refresh token error" })
+    // return res.status(500).json({ error: "Refresh token error" })
+    res.status(500).json({ error: "Refresh token error" })
   }
 }
 
