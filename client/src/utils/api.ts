@@ -1,4 +1,5 @@
-export const API_BASE_URL = 'https://weavefash.onrender.com'       // bcoz the backend is running on this port 
+// export const API_BASE_URL = 'https://weavefash.onrender.com'       // bcoz the backend is running on this port 
+export const API_BASE_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}`      
 
 export const API_ROUTES = {
     AUTH: `${API_BASE_URL}/api/auth`,        // why? bcoz when we go to, server/server.ts -> we will see the endpoint we're using is [app.use("/api/auth", authRoutes)]
