@@ -1,3 +1,4 @@
+// // authService.ts
 // import axios from 'axios';
 // import { API_ROUTES } from '@/utils/api';
 // import { useAuthStore } from '../store/useAuthStore';
@@ -9,15 +10,15 @@
 
 // export const setupInterceptors = () => {
 //   const { getState } = useAuthStore;
-  
+
 //   axiosInstance.interceptors.response.use(
 //     response => response,
 //     async (error) => {
 //       const originalRequest = error.config;
-      
+
 //       if (error.response?.status === 401 && !originalRequest._retry) {
 //         originalRequest._retry = true;
-        
+
 //         try {
 //           const refreshed = await getState().refreshAcessToken();
 //           if (refreshed) {
@@ -26,10 +27,10 @@
 //         } catch (refreshError) {
 //           console.error("Token refresh failed", refreshError);
 //         }
-        
+
 //         getState().logout();
 //       }
-      
+
 //       return Promise.reject(error);
 //     }
 //   );
@@ -39,6 +40,7 @@
 
 
 
+// src/lib/authAxios.ts
 import axios from 'axios';
 import { API_ROUTES } from '@/utils/api';
 import { useAuthStore } from '@/store/useAuthStore';
@@ -57,7 +59,20 @@ authAxios.interceptors.response.use(
     const originalRequest = error.config;
     const authStore = useAuthStore.getState();
 
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    // if (error.response?.status === 401 && !originalRequest._retry) {
+    //   if (isRefreshing) {
+    //     return new Promise((resolve) => {
+    //       failedRequests.push(() => resolve(authAxios(originalRequest)));
+    //     });
+    //   }
+
+    // ✅ Prevent refresh during login/register
+    if (
+      error.response?.status === 401 &&
+      !originalRequest._retry &&
+      !originalRequest.url.includes('/login') &&
+      !originalRequest.url.includes('/register')
+    ) {
       if (isRefreshing) {
         return new Promise((resolve) => {
           failedRequests.push(() => resolve(authAxios(originalRequest)));
