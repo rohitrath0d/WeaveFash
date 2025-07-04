@@ -14,7 +14,7 @@ function generateToken(userId: string, email: string, role: string) {
       email,
       role,
     },
-    process.env.JWT_SECRET!,
+    process.env.JWT_SECRET_BACKEND!,
     { expiresIn: "60m" }
   );
 
