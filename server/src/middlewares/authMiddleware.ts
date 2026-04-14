@@ -24,7 +24,8 @@ export const authenticateJwt = (req: AuthenticatedRequest, res: Response, next: 
         return;
     }
 
-    jwtVerify(accessToken, new TextEncoder().encode(process.env.JWT_SECRET_BACKEND!)).then((res)=>{
+
+    jwtVerify(accessToken, new TextEncoder().encode(process.env.JWT_SECRET!)).then((res)=>{
         const payload = res.payload as JWTPayload & {
             userId: string;
             email: string;
@@ -52,8 +53,8 @@ export const isSuperAdmin =  (req: AuthenticatedRequest, res: Response, next: Ne
         });
       
     }
-};
 
+}
 
 // export const authMiddleware = (
 //     req: Request,
@@ -79,4 +80,5 @@ export const isSuperAdmin =  (req: AuthenticatedRequest, res: Response, next: Ne
 //     } catch (err) {
 //       return res.status(401).json({ error: 'Invalid token' });
 //     }
+
 //   };

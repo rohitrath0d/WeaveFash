@@ -1,6 +1,5 @@
-// export const API_BASE_URL = 'https://weavefash.onrender.com'       // bcoz the backend is running on this port 
-export const API_BASE_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}`      
-
+// export const API_BASE_URL = 'http://localhost:3001'                   // bcoz the backend is running on this port 
+export const API_BASE_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}`
 export const API_ROUTES = {
     AUTH: `${API_BASE_URL}/api/auth`,        // why? bcoz when we go to, server/server.ts -> we will see the endpoint we're using is [app.use("/api/auth", authRoutes)]
     PRODUCTS: `${API_BASE_URL}/api/products`,
@@ -9,4 +8,4 @@ export const API_ROUTES = {
     CART: `${API_BASE_URL}/api/cart`,
     ADDRESS: `${API_BASE_URL}/api/address`,
     ORDER: `${API_BASE_URL}/api/order`,
-}    
+}
